@@ -1,0 +1,21 @@
+1: palavra reservada: int
+1: ID, nome= x
+1: ;
+2: palavra reservada: int
+2: ID, nome= y
+2: ;
+3: palavra reservada: void
+3: ID, nome= z
+3: ;
+4: palavra reservada: int
+4: ID, nome= vetor
+4: [
+4: NUM, valor= 10
+4: ]
+4: ;
+5: palavra reservada: int
+5: ID, nome= matriz
+5: [
+5: NUM, valor= 100
+5: ]
+5: ;

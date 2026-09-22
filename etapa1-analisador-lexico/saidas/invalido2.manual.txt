@@ -1,0 +1,7 @@
+1: palavra reservada: int
+1: ID, nome= x
+1: ;
+2: ID, nome= x
+2: =
+2: ERRO: '#'
+2: ;

@@ -1,0 +1,65 @@
+1: palavra reservada: int
+1: ID, nome= x
+1: ;
+2: palavra reservada: int
+2: ID, nome= y
+2: ;
+3: palavra reservada: while
+3: (
+3: ID, nome= x
+3: <
+3: ID, nome= y
+3: )
+4: ID, nome= x
+4: =
+4: ID, nome= y
+4: ;
+5: palavra reservada: while
+5: (
+5: ID, nome= x
+5: <=
+5: ID, nome= y
+5: )
+6: ID, nome= y
+6: =
+6: ID, nome= x
+6: ;
+7: palavra reservada: while
+7: (
+7: ID, nome= x
+7: >
+7: ID, nome= y
+7: )
+8: ID, nome= x
+8: =
+8: ID, nome= y
+8: ;
+9: palavra reservada: while
+9: (
+9: ID, nome= x
+9: >=
+9: ID, nome= y
+9: )
+10: ID, nome= y
+10: =
+10: ID, nome= x
+10: ;
+11: palavra reservada: while
+11: (
+11: ID, nome= x
+11: ==
+11: ID, nome= y
+11: )
+12: ID, nome= x
+12: =
+12: ID, nome= y
+12: ;
+13: palavra reservada: while
+13: (
+13: ID, nome= x
+13: !=
+13: ID, nome= y
+13: )
+14: palavra reservada: return
+14: ID, nome= y
+14: ;

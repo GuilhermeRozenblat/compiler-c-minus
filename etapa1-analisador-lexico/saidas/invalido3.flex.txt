@@ -1,0 +1,5 @@
+1: palavra reservada: int
+1: ID, nome= val
+1: ERRO: '@'
+1: ID, nome= r
+1: ;

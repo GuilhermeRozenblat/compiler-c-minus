@@ -1,0 +1,51 @@
+2: palavra reservada: void
+2: ID, nome= comparar
+2: (
+2: palavra reservada: int
+2: ID, nome= a
+2: ,
+2: palavra reservada: int
+2: ID, nome= b
+2: )
+3: {
+3: palavra reservada: if
+3: (
+3: ID, nome= a
+3: <=
+3: ID, nome= b
+3: )
+3: ID, nome= a
+3: =
+3: ID, nome= b
+3: ;
+4: palavra reservada: if
+4: (
+4: ID, nome= a
+4: >
+4: ID, nome= b
+4: )
+4: ID, nome= a
+4: =
+4: ID, nome= b
+4: ;
+5: palavra reservada: if
+5: (
+5: ID, nome= a
+5: >=
+5: ID, nome= b
+5: )
+5: ID, nome= a
+5: =
+5: ID, nome= b
+5: ;
+6: palavra reservada: if
+6: (
+6: ID, nome= a
+6: !=
+6: ID, nome= b
+6: )
+6: ID, nome= a
+6: =
+6: ID, nome= b
+6: ;
+7: }
