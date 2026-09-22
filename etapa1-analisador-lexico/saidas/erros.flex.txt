@@ -1,0 +1,23 @@
+1: palavra reservada: int
+1: ID, nome= x
+1: ;
+2: ID, nome= x
+2: =
+2: NUM, valor= 10
+2: ERRO: '#'
+2: NUM, valor= 3
+2: ;
+3: ID, nome= x
+3: =
+3: ERRO: '@'
+3: ;
+4: ID, nome= x
+4: =
+4: NUM, valor= 5
+4: ERRO: '$'
+4: NUM, valor= 2
+4: ;
+5: ID, nome= a
+5: ERRO: '!'
+5: ID, nome= b
+6: ERRO: '/*'

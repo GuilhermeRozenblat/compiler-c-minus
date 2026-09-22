@@ -1,0 +1,70 @@
+4: palavra reservada: int
+4: ID, nome= gcd
+4: (
+4: palavra reservada: int
+4: ID, nome= u
+4: ,
+4: palavra reservada: int
+4: ID, nome= v
+4: )
+5: {
+5: palavra reservada: if
+5: (
+5: ID, nome= v
+5: ==
+5: NUM, valor= 0
+5: )
+5: palavra reservada: return
+5: ID, nome= u
+5: ;
+6: palavra reservada: else
+6: palavra reservada: return
+6: ID, nome= gcd
+6: (
+6: ID, nome= v
+6: ,
+6: ID, nome= u
+6: -
+6: ID, nome= u
+6: /
+6: ID, nome= v
+6: *
+6: ID, nome= v
+6: )
+6: ;
+8: }
+10: palavra reservada: void
+10: ID, nome= main
+10: (
+10: palavra reservada: void
+10: )
+11: {
+11: palavra reservada: int
+11: ID, nome= x
+11: ;
+11: palavra reservada: int
+11: ID, nome= y
+11: ;
+12: ID, nome= x
+12: =
+12: ID, nome= input
+12: (
+12: )
+12: ;
+12: ID, nome= y
+12: =
+12: ID, nome= input
+12: (
+12: )
+12: ;
+13: ID, nome= output
+13: (
+13: ID, nome= gcd
+13: (
+13: ID, nome= x
+13: ,
+13: ID, nome= y
+13: )
+13: )
+13: ;
+14: }

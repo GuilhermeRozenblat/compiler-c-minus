@@ -1,0 +1,5 @@
+int x;
+int y;
+void z;
+int vetor[10];
+int matriz[100];

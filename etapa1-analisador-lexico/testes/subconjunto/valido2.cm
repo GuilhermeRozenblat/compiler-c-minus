@@ -1,0 +1,14 @@
+int x;
+int y;
+while (x < y)
+  x = y;
+while (x <= y)
+  y = x;
+while (x > y)
+  x = y;
+while (x >= y)
+  y = x;
+while (x == y)
+  x = y;
+while (x != y)
+  return y;

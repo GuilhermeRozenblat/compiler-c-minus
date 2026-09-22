@@ -1,0 +1,239 @@
+4: palavra reservada: int
+4: ID, nome= x
+4: [
+4: NUM, valor= 10
+4: ]
+4: ;
+6: palavra reservada: int
+6: ID, nome= minloc
+6: (
+6: palavra reservada: int
+6: ID, nome= a
+6: [
+6: ]
+6: ,
+6: palavra reservada: int
+6: ID, nome= low
+6: ,
+6: palavra reservada: int
+6: ID, nome= high
+6: )
+7: {
+7: palavra reservada: int
+7: ID, nome= i
+7: ;
+7: palavra reservada: int
+7: ID, nome= x
+7: ;
+7: palavra reservada: int
+7: ID, nome= k
+7: ;
+8: ID, nome= k
+8: =
+8: ID, nome= low
+8: ;
+9: ID, nome= x
+9: =
+9: ID, nome= a
+9: [
+9: ID, nome= low
+9: ]
+9: ;
+10: ID, nome= i
+10: =
+10: ID, nome= low
+10: +
+10: NUM, valor= 1
+10: ;
+11: palavra reservada: while
+11: (
+11: ID, nome= i
+11: <
+11: ID, nome= high
+11: )
+12: {
+12: palavra reservada: if
+12: (
+12: ID, nome= a
+12: [
+12: ID, nome= i
+12: ]
+12: <
+12: ID, nome= x
+12: )
+13: {
+13: ID, nome= x
+13: =
+13: ID, nome= a
+13: [
+13: ID, nome= i
+13: ]
+13: ;
+14: ID, nome= k
+14: =
+14: ID, nome= i
+14: ;
+14: }
+15: ID, nome= i
+15: =
+15: ID, nome= i
+15: +
+15: NUM, valor= 1
+15: ;
+16: }
+17: palavra reservada: return
+17: ID, nome= k
+17: ;
+18: }
+20: palavra reservada: void
+20: ID, nome= sort
+20: (
+20: palavra reservada: int
+20: ID, nome= a
+20: [
+20: ]
+20: ,
+20: palavra reservada: int
+20: ID, nome= low
+20: ,
+20: palavra reservada: int
+20: ID, nome= high
+20: )
+21: {
+21: palavra reservada: int
+21: ID, nome= i
+21: ;
+21: palavra reservada: int
+21: ID, nome= k
+21: ;
+22: ID, nome= i
+22: =
+22: ID, nome= low
+22: ;
+23: palavra reservada: while
+23: (
+23: ID, nome= i
+23: <
+23: ID, nome= high
+23: -
+23: NUM, valor= 1
+23: )
+24: {
+24: palavra reservada: int
+24: ID, nome= t
+24: ;
+25: ID, nome= k
+25: =
+25: ID, nome= minloc
+25: (
+25: ID, nome= a
+25: ,
+25: ID, nome= i
+25: ,
+25: ID, nome= high
+25: )
+25: ;
+26: ID, nome= t
+26: =
+26: ID, nome= a
+26: [
+26: ID, nome= k
+26: ]
+26: ;
+27: ID, nome= a
+27: [
+27: ID, nome= k
+27: ]
+27: =
+27: ID, nome= a
+27: [
+27: ID, nome= i
+27: ]
+27: ;
+28: ID, nome= a
+28: [
+28: ID, nome= i
+28: ]
+28: =
+28: ID, nome= t
+28: ;
+29: ID, nome= i
+29: =
+29: ID, nome= i
+29: +
+29: NUM, valor= 1
+29: ;
+30: }
+31: }
+33: palavra reservada: void
+33: ID, nome= main
+33: (
+33: palavra reservada: void
+33: )
+34: {
+34: palavra reservada: int
+34: ID, nome= i
+34: ;
+35: ID, nome= i
+35: =
+35: NUM, valor= 0
+35: ;
+36: palavra reservada: while
+36: (
+36: ID, nome= i
+36: <
+36: NUM, valor= 10
+36: )
+37: {
+37: ID, nome= x
+37: [
+37: ID, nome= i
+37: ]
+37: =
+37: ID, nome= input
+37: (
+37: )
+37: ;
+38: ID, nome= i
+38: =
+38: ID, nome= i
+38: +
+38: NUM, valor= 1
+38: ;
+38: }
+39: ID, nome= sort
+39: (
+39: ID, nome= x
+39: ,
+39: NUM, valor= 0
+39: ,
+39: NUM, valor= 10
+39: )
+39: ;
+40: ID, nome= i
+40: =
+40: NUM, valor= 0
+40: ;
+41: palavra reservada: while
+41: (
+41: ID, nome= i
+41: <
+41: NUM, valor= 10
+41: )
+42: {
+42: ID, nome= output
+42: (
+42: ID, nome= x
+42: [
+42: ID, nome= i
+42: ]
+42: )
+42: ;
+43: ID, nome= i
+43: =
+43: ID, nome= i
+43: +
+43: NUM, valor= 1
+43: ;
+43: }
+44: }
