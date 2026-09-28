@@ -1,0 +1,83 @@
+3: palavra reservada: int
+3: ID, nome= conta
+3: (
+3: palavra reservada: int
+3: ID, nome= v
+3: [
+3: ]
+3: ,
+3: palavra reservada: int
+3: ID, nome= n
+3: ,
+3: palavra reservada: int
+3: ID, nome= min
+3: ,
+3: palavra reservada: int
+3: ID, nome= max
+3: )
+4: {
+4: palavra reservada: int
+4: ID, nome= i
+4: ;
+4: palavra reservada: int
+4: ID, nome= total
+4: ;
+5: palavra reservada: if
+5: (
+5: ID, nome= min
+5: >
+5: ID, nome= max
+5: )
+5: palavra reservada: return
+5: NUM, valor= 0
+5: ;
+6: ID, nome= i
+6: =
+6: NUM, valor= 0
+6: ;
+7: ID, nome= total
+7: =
+7: NUM, valor= 0
+7: ;
+8: palavra reservada: while
+8: (
+8: ID, nome= i
+8: !=
+8: ID, nome= n
+8: )
+9: {
+9: palavra reservada: if
+9: (
+9: ID, nome= v
+9: [
+9: ID, nome= i
+9: ]
+9: >=
+9: ID, nome= min
+9: )
+10: palavra reservada: if
+10: (
+10: ID, nome= v
+10: [
+10: ID, nome= i
+10: ]
+10: <=
+10: ID, nome= max
+10: )
+11: ID, nome= total
+11: =
+11: ID, nome= total
+11: +
+11: NUM, valor= 1
+11: ;
+12: ID, nome= i
+12: =
+12: ID, nome= i
+12: +
+12: NUM, valor= 1
+12: ;
+13: }
+14: palavra reservada: return
+14: ID, nome= total
+14: ;
+15: }

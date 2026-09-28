@@ -1,6 +1,6 @@
 %{
-#include <string.h>
 #include "scanner.h"
+#define YY_USER_ACTION lexema = yytext;
 %}
 
 %option noyywrap nounput
@@ -12,21 +12,17 @@ identificador {letra}+
 
 %%
 
-"/*"            { int c, anterior = 0, quebras = 0;
-                  for (;;) {
-                      /* o input() do flex devolve 0 no fim do arquivo, nao EOF */
-                      c = input();
-                      if (c == 0)
-                          return ERRO;
-                      if (c == '\n')
-                          quebras++;
-                      /* soma as quebras so no fim: comentario aberto acusa erro na linha em que abriu */
-                      if (anterior == '*' && c == '/') {
-                          linha += quebras;
-                          break;
-                      }
+"/*"            { int c = 0, anterior;
+                  do {
                       anterior = c;
-                  }
+                      c = input();
+                      if (c == '\n')
+                          linha++;
+                      if (c == 0) {
+                          lexema = "/*";
+                          return ERRO;
+                      }
+                  } while (!(anterior == '*' && c == '/'));
                 }
 "else"          { return ELSE; }
 "if"            { return IF; }
@@ -61,7 +57,7 @@ identificador {letra}+
 
 %%
 
-char lexema[TAMANHO_MAXIMO_LEXEMA + 1];
+char *lexema;
 int linha = 1;
 
 void iniciar_scanner(FILE *arquivo)
@@ -71,15 +67,5 @@ void iniciar_scanner(FILE *arquivo)
 
 TipoToken proximo_token(void)
 {
-    TipoToken token = yylex();
-
-    /* o fim de arquivo dentro de um comentario apaga o yytext */
-    if (token == ERRO && yytext[0] == '\0') {
-        strcpy(lexema, "/*");
-        return token;
-    }
-
-    strncpy(lexema, yytext, TAMANHO_MAXIMO_LEXEMA);
-    lexema[TAMANHO_MAXIMO_LEXEMA] = '\0';
-    return token;
+    return yylex();
 }

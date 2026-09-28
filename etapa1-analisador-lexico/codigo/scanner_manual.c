@@ -3,7 +3,10 @@
 #include <ctype.h>
 #include "scanner.h"
 
-char lexema[TAMANHO_MAXIMO_LEXEMA + 1];
+#define TAM_MAX 100   /* lexema maior que isso e cortado */
+
+static char texto[TAM_MAX + 1];
+char *lexema = texto;
 int linha = 1;
 
 static FILE *fonte;
@@ -176,12 +179,12 @@ TipoToken proximo_token(void)
             break;
         }
 
-        if (acumula && tamanho < TAMANHO_MAXIMO_LEXEMA)
-            lexema[tamanho++] = (char) c;
+        if (acumula && tamanho < TAM_MAX)
+            texto[tamanho++] = (char) c;
     }
 
-    lexema[tamanho] = '\0';
+    texto[tamanho] = '\0';
     if (token == ID)
-        token = buscar_palavra_reservada(lexema);
+        token = buscar_palavra_reservada(texto);
     return token;
 }
