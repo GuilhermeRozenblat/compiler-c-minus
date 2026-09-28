@@ -20,4 +20,4 @@
 5: ID, nome= a
 5: ERRO: '!'
 5: ID, nome= b
-6: ERRO: '/*'
+7: ERRO: '/*'

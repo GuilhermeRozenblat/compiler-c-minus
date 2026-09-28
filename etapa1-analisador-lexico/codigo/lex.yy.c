@@ -481,8 +481,8 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "codigo/cminus.l"
 #line 2 "codigo/cminus.l"
-#include <string.h>
 #include "scanner.h"
+#define YY_USER_ACTION lexema = yytext;
 #line 486 "codigo/lex.yy.c"
 #line 487 "codigo/lex.yy.c"
 
@@ -762,180 +762,176 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 15 "codigo/cminus.l"
-{ int c, anterior = 0, quebras = 0;
-                  for (;;) {
-                      /* o input() do flex devolve 0 no fim do arquivo, nao EOF */
-                      c = input();
-                      if (c == 0)
-                          return ERRO;
-                      if (c == '\n')
-                          quebras++;
-                      /* soma as quebras so no fim: comentario aberto acusa erro na linha em que abriu */
-                      if (anterior == '*' && c == '/') {
-                          linha += quebras;
-                          break;
-                      }
+{ int c = 0, anterior;
+                  do {
                       anterior = c;
-                  }
+                      c = input();
+                      if (c == '\n')
+                          linha++;
+                      if (c == 0) {
+                          lexema = "/*";
+                          return ERRO;
+                      }
+                  } while (!(anterior == '*' && c == '/'));
                 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "codigo/cminus.l"
+#line 27 "codigo/cminus.l"
 { return ELSE; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 32 "codigo/cminus.l"
+#line 28 "codigo/cminus.l"
 { return IF; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "codigo/cminus.l"
+#line 29 "codigo/cminus.l"
 { return INT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "codigo/cminus.l"
+#line 30 "codigo/cminus.l"
 { return RETURN; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 35 "codigo/cminus.l"
+#line 31 "codigo/cminus.l"
 { return VOID; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "codigo/cminus.l"
+#line 32 "codigo/cminus.l"
 { return WHILE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "codigo/cminus.l"
+#line 33 "codigo/cminus.l"
 { return MAIS; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "codigo/cminus.l"
+#line 34 "codigo/cminus.l"
 { return MENOS; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "codigo/cminus.l"
+#line 35 "codigo/cminus.l"
 { return VEZES; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 40 "codigo/cminus.l"
+#line 36 "codigo/cminus.l"
 { return DIVIDIDO; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "codigo/cminus.l"
+#line 37 "codigo/cminus.l"
 { return MENOR; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 42 "codigo/cminus.l"
+#line 38 "codigo/cminus.l"
 { return MENOR_IGUAL; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "codigo/cminus.l"
+#line 39 "codigo/cminus.l"
 { return MAIOR; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 44 "codigo/cminus.l"
+#line 40 "codigo/cminus.l"
 { return MAIOR_IGUAL; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 45 "codigo/cminus.l"
+#line 41 "codigo/cminus.l"
 { return IGUAL; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 46 "codigo/cminus.l"
+#line 42 "codigo/cminus.l"
 { return DIFERENTE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 47 "codigo/cminus.l"
+#line 43 "codigo/cminus.l"
 { return ATRIBUICAO; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 48 "codigo/cminus.l"
+#line 44 "codigo/cminus.l"
 { return PONTO_VIRGULA; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 49 "codigo/cminus.l"
+#line 45 "codigo/cminus.l"
 { return VIRGULA; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 50 "codigo/cminus.l"
+#line 46 "codigo/cminus.l"
 { return ABRE_PARENTESE; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 51 "codigo/cminus.l"
+#line 47 "codigo/cminus.l"
 { return FECHA_PARENTESE; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 52 "codigo/cminus.l"
+#line 48 "codigo/cminus.l"
 { return ABRE_COLCHETE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 53 "codigo/cminus.l"
+#line 49 "codigo/cminus.l"
 { return FECHA_COLCHETE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "codigo/cminus.l"
+#line 50 "codigo/cminus.l"
 { return ABRE_CHAVE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 55 "codigo/cminus.l"
+#line 51 "codigo/cminus.l"
 { return FECHA_CHAVE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 56 "codigo/cminus.l"
+#line 52 "codigo/cminus.l"
 { return NUM; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 57 "codigo/cminus.l"
+#line 53 "codigo/cminus.l"
 { return ID; }
 	YY_BREAK
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 58 "codigo/cminus.l"
+#line 54 "codigo/cminus.l"
 { linha++; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 59 "codigo/cminus.l"
+#line 55 "codigo/cminus.l"
 { }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 60 "codigo/cminus.l"
+#line 56 "codigo/cminus.l"
 { return ERRO; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 62 "codigo/cminus.l"
+#line 58 "codigo/cminus.l"
 ECHO;
 	YY_BREAK
-#line 938 "codigo/lex.yy.c"
+#line 934 "codigo/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1903,10 +1899,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 62 "codigo/cminus.l"
+#line 58 "codigo/cminus.l"
 
 
-char lexema[TAMANHO_MAXIMO_LEXEMA + 1];
+char *lexema;
 int linha = 1;
 
 void iniciar_scanner(FILE *arquivo)
@@ -1916,16 +1912,6 @@ void iniciar_scanner(FILE *arquivo)
 
 TipoToken proximo_token(void)
 {
-    TipoToken token = yylex();
-
-    /* o fim de arquivo dentro de um comentario apaga o yytext */
-    if (token == ERRO && yytext[0] == '\0') {
-        strcpy(lexema, "/*");
-        return token;
-    }
-
-    strncpy(lexema, yytext, TAMANHO_MAXIMO_LEXEMA);
-    lexema[TAMANHO_MAXIMO_LEXEMA] = '\0';
-    return token;
+    return yylex();
 }
 

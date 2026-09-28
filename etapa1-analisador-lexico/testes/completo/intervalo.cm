@@ -1,0 +1,15 @@
+/* conta quantos elementos de v estao entre min e max */
+
+int conta(int v[], int n, int min, int max)
+{ int i; int total;
+  if (min > max) return 0;
+  i = 0;
+  total = 0;
+  while (i != n)
+  { if (v[i] >= min)
+      if (v[i] <= max)
+        total = total + 1;
+    i = i + 1;
+  }
+  return total;
+}

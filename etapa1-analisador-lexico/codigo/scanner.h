@@ -3,8 +3,6 @@
 
 #include <stdio.h>
 
-#define TAMANHO_MAXIMO_LEXEMA 64
-
 /* FIM_ARQUIVO deve ser zero: o yylex devolve 0 no fim do arquivo */
 typedef enum {
     FIM_ARQUIVO = 0, ERRO,
@@ -19,7 +17,7 @@ typedef enum {
     ABRE_CHAVE, FECHA_CHAVE
 } TipoToken;
 
-extern char lexema[TAMANHO_MAXIMO_LEXEMA + 1];
+extern char *lexema;
 extern int linha;
 
 void iniciar_scanner(FILE *arquivo);
