@@ -172,7 +172,7 @@ extern FILE *yyin, *yyout;
 	do \
 		{ \
 		/* Undo effects of setting up yytext. */ \
-        int yyless_macro_arg = (n); \
+        size_t yyless_macro_arg = (n); \
         YY_LESS_LINENO(yyless_macro_arg);\
 		*yy_cp = (yy_hold_char); \
 		YY_RESTORE_YY_MORE_OFFSET \
@@ -194,7 +194,7 @@ struct yy_buffer_state
 	/* Size of input buffer in bytes, not including room for EOB
 	 * characters.
 	 */
-	int yy_buf_size;
+	yy_size_t yy_buf_size;
 
 	/* Number of characters read into yy_ch_buf, not including EOB
 	 * characters.
@@ -283,7 +283,7 @@ static int yy_did_buffer_switch_on_eof;
 
 void yyrestart ( FILE *input_file  );
 void yy_switch_to_buffer ( YY_BUFFER_STATE new_buffer  );
-YY_BUFFER_STATE yy_create_buffer ( FILE *file, int size  );
+YY_BUFFER_STATE yy_create_buffer ( FILE *file, yy_size_t size  );
 void yy_delete_buffer ( YY_BUFFER_STATE b  );
 void yy_flush_buffer ( YY_BUFFER_STATE b  );
 void yypush_buffer_state ( YY_BUFFER_STATE new_buffer  );
@@ -367,12 +367,12 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[57] =
     {   0,
-        0,    0,   33,   31,   30,   29,   31,   21,   22,   10,
-        8,   20,    9,   11,   27,   19,   12,   18,   14,   28,
-       23,   24,   28,   28,   28,   28,   28,   25,   26,   30,
-       17,    1,   27,   13,   16,   15,   28,   28,    3,   28,
-       28,   28,   28,   28,    4,   28,   28,   28,    2,   28,
-        6,   28,   28,    7,    5,    0
+        0,    0,   33,   31,   29,   28,   31,   20,   21,    9,
+        7,   19,    8,   10,   26,   18,   11,   17,   13,   27,
+       22,   23,   27,   27,   27,   27,   27,   24,   25,   29,
+       16,   30,   26,   12,   15,   14,   27,   27,    2,   27,
+       27,   27,   27,   27,    3,   27,   27,   27,    1,   27,
+        5,   27,   27,    6,    4,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -481,10 +481,16 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "codigo/cminus.l"
 #line 2 "codigo/cminus.l"
-#include "scanner.h"
-#define YY_USER_ACTION lexema = yytext;
-#line 486 "codigo/lex.yy.c"
-#line 487 "codigo/lex.yy.c"
+#include "globals.h"
+#include "util.h"
+#include "scan.h"
+
+char tokenString[MAXTOKENLEN + 1];
+
+// guarda o lexema antes de cada acao (o input() do comentario apaga o yytext)
+#define YY_USER_ACTION strncpy(tokenString, yytext, MAXTOKENLEN);
+#line 492 "codigo/lex.yy.c"
+#line 493 "codigo/lex.yy.c"
 
 #define INITIAL 0
 
@@ -603,7 +609,7 @@ static int input ( void );
 	else \
 		{ \
 		errno=0; \
-		while ( (result = (int) fread(buf, 1, (yy_size_t) max_size, yyin)) == 0 && ferror(yyin)) \
+		while ( (result = fread(buf, 1, max_size, yyin)) == 0 && ferror(yyin)) \
 			{ \
 			if( errno != EINTR) \
 				{ \
@@ -699,10 +705,10 @@ YY_DECL
 		}
 
 	{
-#line 13 "codigo/cminus.l"
+#line 21 "codigo/cminus.l"
 
 
-#line 705 "codigo/lex.yy.c"
+#line 711 "codigo/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -761,184 +767,185 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "codigo/cminus.l"
-{ int c = 0, anterior;
-                  do {
-                      anterior = c;
-                      c = input();
-                      if (c == '\n')
-                          linha++;
-                      if (c == 0) {
-                          lexema = "/*";
-                          return ERRO;
-                      }
-                  } while (!(anterior == '*' && c == '/'));
-                }
+#line 23 "codigo/cminus.l"
+{ return ELSE; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 27 "codigo/cminus.l"
-{ return ELSE; }
+#line 24 "codigo/cminus.l"
+{ return IF; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 28 "codigo/cminus.l"
-{ return IF; }
+#line 25 "codigo/cminus.l"
+{ return INT; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 29 "codigo/cminus.l"
-{ return INT; }
+#line 26 "codigo/cminus.l"
+{ return RETURN; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 30 "codigo/cminus.l"
-{ return RETURN; }
+#line 27 "codigo/cminus.l"
+{ return VOID; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 31 "codigo/cminus.l"
-{ return VOID; }
+#line 28 "codigo/cminus.l"
+{ return WHILE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 32 "codigo/cminus.l"
-{ return WHILE; }
+#line 29 "codigo/cminus.l"
+{ return PLUS; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 33 "codigo/cminus.l"
-{ return MAIS; }
+#line 30 "codigo/cminus.l"
+{ return MINUS; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 34 "codigo/cminus.l"
-{ return MENOS; }
+#line 31 "codigo/cminus.l"
+{ return TIMES; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 35 "codigo/cminus.l"
-{ return VEZES; }
+#line 32 "codigo/cminus.l"
+{ return OVER; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 36 "codigo/cminus.l"
-{ return DIVIDIDO; }
+#line 33 "codigo/cminus.l"
+{ return LT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 37 "codigo/cminus.l"
-{ return MENOR; }
+#line 34 "codigo/cminus.l"
+{ return LE; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 38 "codigo/cminus.l"
-{ return MENOR_IGUAL; }
+#line 35 "codigo/cminus.l"
+{ return GT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 39 "codigo/cminus.l"
-{ return MAIOR; }
+#line 36 "codigo/cminus.l"
+{ return GE; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 40 "codigo/cminus.l"
-{ return MAIOR_IGUAL; }
+#line 37 "codigo/cminus.l"
+{ return EQ; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 41 "codigo/cminus.l"
-{ return IGUAL; }
+#line 38 "codigo/cminus.l"
+{ return NE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 42 "codigo/cminus.l"
-{ return DIFERENTE; }
+#line 39 "codigo/cminus.l"
+{ return ASSIGN; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 43 "codigo/cminus.l"
-{ return ATRIBUICAO; }
+#line 40 "codigo/cminus.l"
+{ return SEMI; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 44 "codigo/cminus.l"
-{ return PONTO_VIRGULA; }
+#line 41 "codigo/cminus.l"
+{ return COMMA; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "codigo/cminus.l"
-{ return VIRGULA; }
+#line 42 "codigo/cminus.l"
+{ return LPAREN; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "codigo/cminus.l"
-{ return ABRE_PARENTESE; }
+#line 43 "codigo/cminus.l"
+{ return RPAREN; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 47 "codigo/cminus.l"
-{ return FECHA_PARENTESE; }
+#line 44 "codigo/cminus.l"
+{ return LBRACKET; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 48 "codigo/cminus.l"
-{ return ABRE_COLCHETE; }
+#line 45 "codigo/cminus.l"
+{ return RBRACKET; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 49 "codigo/cminus.l"
-{ return FECHA_COLCHETE; }
+#line 46 "codigo/cminus.l"
+{ return LBRACE; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 50 "codigo/cminus.l"
-{ return ABRE_CHAVE; }
+#line 47 "codigo/cminus.l"
+{ return RBRACE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 51 "codigo/cminus.l"
-{ return FECHA_CHAVE; }
+#line 48 "codigo/cminus.l"
+{ return NUM; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 52 "codigo/cminus.l"
-{ return NUM; }
-	YY_BREAK
-case 28:
-YY_RULE_SETUP
-#line 53 "codigo/cminus.l"
+#line 49 "codigo/cminus.l"
 { return ID; }
 	YY_BREAK
-case 29:
-/* rule 29 can match eol */
+case 28:
+/* rule 28 can match eol */
 YY_RULE_SETUP
-#line 54 "codigo/cminus.l"
-{ linha++; }
+#line 50 "codigo/cminus.l"
+{ lineno++; }
+	YY_BREAK
+case 29:
+YY_RULE_SETUP
+#line 51 "codigo/cminus.l"
+{ }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 55 "codigo/cminus.l"
-{ }
+#line 52 "codigo/cminus.l"
+{ int c = 0, prev, startLine = lineno;
+                  do {
+                      prev = c;
+                      c = input();
+                      if (c == '\n')
+                          lineno++;
+                      if (c == 0 || c == EOF) {
+                          // comentario nao fechado: o erro fica na linha em que ele abriu
+                          lineno = startLine;
+                          return ERROR;
+                      }
+                  } while (!(prev == '*' && c == '/'));
+                }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 56 "codigo/cminus.l"
-{ return ERRO; }
+#line 65 "codigo/cminus.l"
+{ return ERROR; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 58 "codigo/cminus.l"
+#line 67 "codigo/cminus.l"
 ECHO;
 	YY_BREAK
-#line 934 "codigo/lex.yy.c"
+#line 941 "codigo/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
 		/* Amount of text matched not including the EOB char. */
-		int yy_amount_of_matched_text = (int) (yy_cp - (yytext_ptr)) - 1;
+		size_t yy_amount_of_matched_text = yy_cp - (yytext_ptr) - 1;
 
 		/* Undo the effects of YY_DO_BEFORE_ACTION. */
 		*yy_cp = (yy_hold_char);
@@ -1076,7 +1083,7 @@ static int yy_get_next_buffer (void)
 {
     	char *dest = YY_CURRENT_BUFFER_LVALUE->yy_ch_buf;
 	char *source = (yytext_ptr);
-	int number_to_move, i;
+	yy_size_t number_to_move, i;
 	int ret_val;
 
 	if ( (yy_c_buf_p) > &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[(yy_n_chars) + 1] )
@@ -1105,7 +1112,7 @@ static int yy_get_next_buffer (void)
 	/* Try to read more data. */
 
 	/* First move last chars to start of buffer. */
-	number_to_move = (int) ((yy_c_buf_p) - (yytext_ptr) - 1);
+	number_to_move = (yy_c_buf_p) - (yytext_ptr) - 1;
 
 	for ( i = 0; i < number_to_move; ++i )
 		*(dest++) = *(source++);
@@ -1127,22 +1134,20 @@ static int yy_get_next_buffer (void)
 			/* just a shorter name for the current buffer */
 			YY_BUFFER_STATE b = YY_CURRENT_BUFFER_LVALUE;
 
-			int yy_c_buf_p_offset =
-				(int) ((yy_c_buf_p) - b->yy_ch_buf);
+			yy_size_t yy_c_buf_p_offset =
+				(yy_c_buf_p) - b->yy_ch_buf;
 
 			if ( b->yy_is_our_buffer )
 				{
-				yy_size_t new_size = b->yy_buf_size * 2;
-
-				if ( new_size <= 0 )
-					b->yy_buf_size += b->yy_buf_size / 8;
-				else
+				if ( b->yy_buf_size < (SIZE_MAX - 2) / 2 )
 					b->yy_buf_size *= 2;
+				else
+					b->yy_buf_size = SIZE_MAX - 2;
 
 				b->yy_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
 					yyrealloc( (void *) b->yy_ch_buf,
-							 (yy_size_t) (b->yy_buf_size + 2)  );
+							 b->yy_buf_size + 2  );
 				}
 			else
 				/* Can't grow it, we don't own it. */
@@ -1192,11 +1197,11 @@ static int yy_get_next_buffer (void)
 		/* Extend the array by 50%, plus the number we really need. */
 		yy_size_t new_size = (yy_n_chars) + number_to_move + ((yy_n_chars) >> 1);
 		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) yyrealloc(
-			(void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf, (yy_size_t) new_size  );
+			(void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf, new_size  );
 		if ( ! YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
 			YY_FATAL_ERROR( "out of dynamic memory in yy_get_next_buffer()" );
 		/* "- 2" to take care of EOB's */
-		YY_CURRENT_BUFFER_LVALUE->yy_buf_size = (int) (new_size - 2);
+		YY_CURRENT_BUFFER_LVALUE->yy_buf_size = new_size - 2;
 	}
 
 	(yy_n_chars) += number_to_move;
@@ -1410,7 +1415,7 @@ static void yy_load_buffer_state  (void)
  * 
  * @return the allocated buffer state.
  */
-    YY_BUFFER_STATE yy_create_buffer  (FILE * file, int  size )
+    YY_BUFFER_STATE yy_create_buffer  (FILE * file, yy_size_t  size )
 {
 	YY_BUFFER_STATE b;
     
@@ -1423,7 +1428,7 @@ static void yy_load_buffer_state  (void)
 	/* yy_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->yy_ch_buf = (char *) yyalloc( (yy_size_t) (b->yy_buf_size + 2)  );
+	b->yy_ch_buf = (char *) yyalloc( b->yy_buf_size + 2  );
 	if ( ! b->yy_ch_buf )
 		YY_FATAL_ERROR( "out of dynamic memory in yy_create_buffer()" );
 
@@ -1626,7 +1631,7 @@ YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )
 	if ( ! b )
 		YY_FATAL_ERROR( "out of dynamic memory in yy_scan_buffer()" );
 
-	b->yy_buf_size = (int) (size - 2);	/* "- 2" to take care of EOB's */
+	b->yy_buf_size = size - 2;	/* "- 2" to take care of EOB's */
 	b->yy_buf_pos = b->yy_ch_buf = base;
 	b->yy_is_our_buffer = 0;
 	b->yy_input_file = NULL;
@@ -1652,7 +1657,7 @@ YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )
 YY_BUFFER_STATE yy_scan_string (const char * yystr )
 {
     
-	return yy_scan_bytes( yystr, (int) strlen(yystr) );
+	return yy_scan_bytes( yystr, strlen(yystr) );
 }
 
 /** Setup the input buffer state to scan the given bytes. The next call to yylex() will
@@ -1669,8 +1674,11 @@ YY_BUFFER_STATE yy_scan_bytes  (const char * yybytes, yy_size_t  _yybytes_len )
 	yy_size_t n;
 	yy_size_t i;
     
+	/* Prevent overflow in calculation of n below */
+	if ( _yybytes_len > SIZE_MAX - 2 )
+		YY_FATAL_ERROR( "bad length in yy_scan_bytes()" );
 	/* Get memory for full buffer, including space for trailing EOB's. */
-	n = (yy_size_t) (_yybytes_len + 2);
+	n = _yybytes_len + 2;
 	buf = (char *) yyalloc( n  );
 	if ( ! buf )
 		YY_FATAL_ERROR( "out of dynamic memory in yy_scan_bytes()" );
@@ -1899,19 +1907,24 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 58 "codigo/cminus.l"
+#line 67 "codigo/cminus.l"
 
 
-char *lexema;
-int linha = 1;
-
-void iniciar_scanner(FILE *arquivo)
+TokenType getToken(void)
 {
-    yyin = arquivo;
-}
+    static int firstTime = TRUE;
+    TokenType currentToken;
 
-TipoToken proximo_token(void)
-{
-    return yylex();
+    if (firstTime) {
+        firstTime = FALSE;
+        yyin = source;
+        yyout = listing;
+    }
+    currentToken = yylex();
+    if (TraceScan && currentToken != ENDFILE) {
+        fprintf(listing, "%d: ", lineno);
+        printToken(currentToken, tokenString);
+    }
+    return currentToken;
 }
 

@@ -1,0 +1,37 @@
+Codigo valido
+
+Arvore sintatica:
+Funcao: gcd (int)
+  Parametro: u (int)
+  Parametro: v (int)
+  Bloco
+    Se
+      Op: ==
+        Id: v
+        Num: 0
+      Retorno
+        Id: u
+      Retorno
+        Chamada: gcd
+          Id: v
+          Op: -
+            Id: u
+            Op: *
+              Op: /
+                Id: u
+                Id: v
+              Id: v
+Funcao: main (void)
+  Bloco
+    Variavel: x (int)
+    Variavel: y (int)
+    Atribuicao
+      Id: x
+      Chamada: input
+    Atribuicao
+      Id: y
+      Chamada: input
+    Chamada: output
+      Chamada: gcd
+        Id: x
+        Id: y

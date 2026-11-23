@@ -1,0 +1,3 @@
+Erro sintatico na linha 4: esperado ";" antes de "return"
+
+Codigo invalido, erros: 1

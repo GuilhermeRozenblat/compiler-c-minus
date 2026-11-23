@@ -1,0 +1,50 @@
+Codigo valido
+
+Arvore sintatica:
+Funcao: conta (int)
+  Parametro vetor: v[] (int)
+  Parametro: n (int)
+  Parametro: min (int)
+  Parametro: max (int)
+  Bloco
+    Variavel: i (int)
+    Variavel: total (int)
+    Se
+      Op: >
+        Id: min
+        Id: max
+      Retorno
+        Num: 0
+    Atribuicao
+      Id: i
+      Num: 0
+    Atribuicao
+      Id: total
+      Num: 0
+    Enquanto
+      Op: !=
+        Id: i
+        Id: n
+      Bloco
+        Se
+          Op: >=
+            Indice: v
+              Id: i
+            Id: min
+          Se
+            Op: <=
+              Indice: v
+                Id: i
+              Id: max
+            Atribuicao
+              Id: total
+              Op: +
+                Id: total
+                Num: 1
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1
+    Retorno
+      Id: total

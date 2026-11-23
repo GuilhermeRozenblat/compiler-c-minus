@@ -1,0 +1,3 @@
+Erro sintatico na linha 3: esperado fim do arquivo antes de "while"
+
+Codigo invalido, erros: 1

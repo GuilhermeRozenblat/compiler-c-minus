@@ -1,0 +1,3 @@
+Erro sintatico no fim do arquivo: esperado "int" ou "void"
+
+Codigo invalido, erros: 1

@@ -1,0 +1,3 @@
+Erro sintatico na linha 2: esperado identificador, numero ou "(" antes de ";"
+
+Codigo invalido, erros: 1

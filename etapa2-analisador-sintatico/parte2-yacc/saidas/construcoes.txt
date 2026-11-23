@@ -1,0 +1,37 @@
+Codigo valido
+
+Arvore sintatica:
+Vetor: v[10] (int)
+Funcao: dobra (void)
+  Parametro vetor: a[] (int)
+  Parametro: n (int)
+  Bloco
+    Variavel: i (int)
+    Atribuicao
+      Id: i
+      Num: 0
+    Enquanto
+      Op: <
+        Id: i
+        Id: n
+      Bloco
+        Atribuicao
+          Indice: a
+            Id: i
+          Op: *
+            Op: +
+              Id: i
+              Num: 1
+            Num: 2
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1
+    Comando vazio
+    Retorno
+Funcao: main (void)
+  Bloco
+    Chamada: dobra
+      Id: v
+      Num: 10

@@ -1,0 +1,3 @@
+Erro lexico na linha 4: comentario nao fechado
+
+Codigo invalido, erros: 1
