@@ -10,7 +10,6 @@ static const char *tokenName[] = {
     "MAIS", "MENOS", "VEZES", "DIVIDIDO", "POTENCIA", "ABRE", "FECHA", "NUM", "FIM"
 };
 
-// largura da coluna Entrada nos passos: a cadeia inteira de tokens
 static int inputWidth;
 
 TreeNode *newNode(int symbol)
@@ -92,7 +91,6 @@ void printStepHeader(void)
             "Passo", STACKWIDTH, "Pilha", inputWidth, "Entrada", "Acao");
 }
 
-// uma linha da tabela de passos: a pilha, a entrada a partir do token pos e a acao
 void printStep(int pos, const char *format, ...)
 {
     static int nsteps = 0;
@@ -118,7 +116,7 @@ void printStep(int pos, const char *format, ...)
     fprintf(listing, "\n" LINHA);
 }
 
-// com um nao-terminal no topo, o esperado sao as colunas em que a linha tem producao
+// esperados: colunas em que a linha da tabela tem producao
 static void printExpected(int symbol)
 {
     const int *row;

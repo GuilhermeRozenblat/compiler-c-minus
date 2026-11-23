@@ -4,7 +4,7 @@
 
 #define MAXRESERVED 4
 
-// estados do DFA minimo (DONE junta os estados finais sem transicao de saida)
+// estados do DFA minimo
 typedef enum {
     START, INNUM, INID, INLT, INGT, INASSIGN, INNOT, DONE
 } StateType;
@@ -15,7 +15,6 @@ static const char *stateName[] = {
 
 char tokenString[MAXTOKENLEN + 1];
 
-// so as palavras reservadas do subconjunto
 static struct {
     char *str;
     TokenType tok;
@@ -164,7 +163,7 @@ TokenType getToken(void)
             }
             break;
         case INNOT:
-            // ! sozinho nao e token, e o caractere seguinte fica para o proximo
+            // "!" sem "=" e erro
             state = DONE;
             if (c == '=')
                 currentToken = NE;

@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "expressao grande demais\n");
         return 2;
     }
-    // sem os espacos do fim, o fim da entrada fica logo depois do ultimo caractere
     while (len > 0 && strchr(" \t\r\n", expression[len - 1]) != NULL)
         len--;
     expression[len] = '\0';
@@ -59,7 +58,7 @@ int main(int argc, char *argv[])
         tokens[ntokens++] = t;
     } while (tokens[ntokens - 1].type != ENDFILE);
 
-    // ii e iii. analise sintatica pela tabela, mostrando os passos
+    // ii e iii. analise sintatica e passos
     fprintf(listing, "\n" TOPO "Etapa 2: analise sintatica pela tabela LL(1)\n" TOPO "\nPassos:\n");
     printStepHeader();
     syntaxTree = parse();
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // iv. arvore de analise sintatica
+    // iv. arvore
     fprintf(listing, "\nResultado: expressao aceita\n\nArvore:\n");
     printTree(syntaxTree);
     return 0;

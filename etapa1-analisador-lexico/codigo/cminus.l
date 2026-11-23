@@ -5,7 +5,7 @@
 
 char tokenString[MAXTOKENLEN + 1];
 
-// guarda o lexema antes de cada acao (o input() do comentario apaga o yytext)
+// copia o lexema antes de cada acao
 #define YY_USER_ACTION strncpy(tokenString, yytext, MAXTOKENLEN);
 %}
 
@@ -56,7 +56,7 @@ whitespace  [ \t\r]+
                       if (c == '\n')
                           lineno++;
                       if (c == 0 || c == EOF) {
-                          // comentario nao fechado: o erro fica na linha em que ele abriu
+                          // comentario nao fechado
                           lineno = startLine;
                           return ERROR;
                       }

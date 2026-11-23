@@ -29,7 +29,7 @@ const Production production[] = {
     { NT_P,  1, { NUM } }                       // 13  P  -> num
 };
 
-// numero positivo: a producao a aplicar
+// maior que zero: numero da producao
 const int parseTable[NNONTERMINALS][NTERMINALS] = {
     //   +     -     *     /     ^     (     )   num     $
     { SCAN, SCAN, SCAN, SCAN, SCAN,    1,  POP,    1,  POP },     // E
@@ -60,8 +60,7 @@ static void push(int symbol, TreeNode *node)
     top++;
 }
 
-// depois de um erro, o proximo so e informado apos um movimento correto,
-// para nao sair em cascata (Louden, p. 186)
+// um erro por vez, para nao sair em cascata (Louden, p. 186)
 static void syntaxError(int symbol, const Token *token)
 {
     if (recovering)
@@ -85,7 +84,7 @@ const char *errorType(int symbol)
     return "E1";
 }
 
-// algoritmo da Figura 4.2 do Louden, com a arvore montada junto com a pilha
+// algoritmo da Figura 4.2 do Louden
 TreeNode *parse(void)
 {
     TreeNode *syntaxTree = newNode(NT_E);

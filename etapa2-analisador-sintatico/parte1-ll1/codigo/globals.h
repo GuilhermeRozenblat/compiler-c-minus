@@ -16,7 +16,7 @@
 
 #define MAXEXPLEN 1000
 
-// os nove primeiros sao os terminais, na ordem das colunas da tabela LL(1)
+// os nove primeiros sao os terminais, na ordem das colunas da tabela
 typedef enum {
     PLUS, MINUS, TIMES, OVER, POWER, LPAREN, RPAREN, NUM, ENDFILE,
     ERROR
