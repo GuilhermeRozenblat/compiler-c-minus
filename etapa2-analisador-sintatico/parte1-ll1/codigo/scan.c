@@ -39,7 +39,7 @@ Token getToken(void)
             case '(':  token.type = LPAREN;   linepos++;   break;
             case ')':  token.type = RPAREN;   linepos++;   break;
             default:
-                // caractere invalido (se for UTF-8 de varios bytes, vai inteiro)
+                // caractere invalido (pode ter mais de um byte)
                 linepos++;
                 while ((expression[linepos] & 0xC0) == 0x80)
                     linepos++;

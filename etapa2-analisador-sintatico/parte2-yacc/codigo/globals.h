@@ -6,7 +6,7 @@
 #include <ctype.h>
 #include <string.h>
 
-// codigos dos tokens gerados pelo Bison (o parser ja os tem)
+// tokens gerados pelo Bison
 #ifndef YYPARSER
 #include "cminus.tab.h"
 #define ENDFILE 0
@@ -26,7 +26,6 @@ extern FILE *source;
 extern FILE *listing;
 extern int lineno;
 
-// erros lexicos e sintaticos
 extern int nerrors;
 
 typedef enum {
@@ -35,17 +34,10 @@ typedef enum {
     AssignK, OpK, ConstK, IdK, IndexK, CallK
 } NodeKind;
 
-// filhos de cada no:
-//   FunK       parametros, corpo
-//   CompoundK  declaracoes locais, comandos
-//   IfK        condicao, comando, comando do else
-//   WhileK     condicao, comando
-//   ReturnK    expressao
-//   AssignK    variavel, expressao
-//   OpK        operando esquerdo, operando direito
-//   IndexK     expressao do indice
-//   CallK      argumentos
-// sibling encadeia declaracoes, parametros, comandos e argumentos
+// filhos: FunK (parametros, corpo), CompoundK (declaracoes, comandos),
+// IfK (condicao, comando, else), WhileK (condicao, comando),
+// AssignK (variavel, expressao), OpK (esquerdo, direito)
+// sibling liga declaracoes, parametros, comandos e argumentos
 #define MAXCHILDREN 3
 
 typedef struct treeNode {
@@ -57,13 +49,9 @@ typedef struct treeNode {
     int val;            // valor em ConstK, tamanho em ArrayK
 } TreeNode;
 
-// EchoSource mostra o codigo fonte com as linhas numeradas
+// opcoes de saida, ligadas no main.c
 extern int EchoSource;
-
-// TraceScan mostra cada token reconhecido
 extern int TraceScan;
-
-// TraceParse mostra cada passo da analise sintatica, com a pilha
 extern int TraceParse;
 
 #endif

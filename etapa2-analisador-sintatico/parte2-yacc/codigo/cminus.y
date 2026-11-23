@@ -17,7 +17,7 @@ void yyerror(const char *message);
 
 %error-verbose
 
-// o conflito e o do else: o Bison empilha, e o else fica com o if mais proximo
+// conflito do else pendente
 %expect 1
 
 %union {
@@ -26,7 +26,6 @@ void yyerror(const char *message);
     struct treeNode *tree;
 }
 
-// os apelidos entre aspas aparecem nas regras e nas mensagens de erro
 %token ELSE "else" IF "if" INT "int" RETURN "return" VOID "void" WHILE "while"
 %token <name> ID "identificador"
 %token <val> NUM "numero"
@@ -343,7 +342,7 @@ arg_list
 
 %%
 
-// o Bison so pede outro token depois de empilhar o anterior
+// quando o Bison pede um token, o anterior ja foi empilhado
 static int yylex(void)
 {
     TokenType token;
@@ -356,7 +355,7 @@ static int yylex(void)
     return token;
 }
 
-// sem o proximo token (yychar vazio), o token lido ja foi empilhado
+// yychar vazio: o token lido ja foi empilhado
 static void traceReduce(const char *lhs, const char *rhs)
 {
     if (TraceParse)

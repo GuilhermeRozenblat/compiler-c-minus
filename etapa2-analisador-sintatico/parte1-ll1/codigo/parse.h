@@ -3,14 +3,13 @@
 
 #define NTERMINALS 9
 
-// nao-terminais, numerados depois dos terminais para caberem na mesma pilha
 enum { NT_E = NTERMINALS, NT_EP, NT_T, NT_TP, NT_F, NT_FP, NT_P, NSYMBOLS };
 
 #define NNONTERMINALS (NSYMBOLS - NTERMINALS)
 #define EMPTY NSYMBOLS          // so aparece como folha da arvore
 #define NPRODUCTIONS 13
 
-// celulas de erro da tabela: POP desempilha o nao-terminal, SCAN descarta o token
+// entradas de erro da tabela
 enum { POP = -1, SCAN = -2 };
 
 typedef struct {
@@ -24,9 +23,8 @@ typedef struct {
     TreeNode *node;
 } StackItem;
 
-// o tipo do erro e o que era esperado saem do simbolo que estava no topo
 typedef struct {
-    int symbol;
+    int symbol;             // o que estava no topo da pilha
     const Token *token;
 } SyntaxError;
 

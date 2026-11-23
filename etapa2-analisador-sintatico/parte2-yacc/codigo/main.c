@@ -15,7 +15,7 @@ int EchoSource = FALSE;
 int TraceScan = FALSE;
 int TraceParse = FALSE;
 
-// do Flex: recomeca a leitura do arquivo
+// do Flex
 void yyrestart(FILE *file);
 
 int main(int argc, char *argv[])
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         printSource();
     }
 
-    // primeiro so o lexico, para listar os tokens, e depois o parser le o arquivo de novo
+    // lista os tokens e volta ao inicio do arquivo para o parser
     if (TraceScan) {
         fprintf(listing, "\n" TOPO "Etapa 1: analise lexica\n" TOPO "\nTokens:\n");
         while (getToken() != ENDFILE)

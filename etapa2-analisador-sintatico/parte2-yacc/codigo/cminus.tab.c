@@ -492,13 +492,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    51,    51,    57,    60,    66,    69,    75,    78,    85,
-      88,    94,   102,   105,   111,   114,   120,   123,   129,   137,
-     141,   146,   150,   155,   158,   161,   164,   167,   173,   176,
-     182,   187,   196,   204,   207,   214,   219,   225,   229,   237,
-     240,   246,   249,   252,   255,   258,   261,   267,   270,   276,
-     279,   285,   288,   294,   297,   303,   306,   309,   312,   319,
-     327,   331,   336,   339
+       0,    50,    50,    56,    59,    65,    68,    74,    77,    84,
+      87,    93,   101,   104,   110,   113,   119,   122,   128,   136,
+     140,   145,   149,   154,   157,   160,   163,   166,   172,   175,
+     181,   186,   195,   203,   206,   213,   218,   224,   228,   236,
+     239,   245,   248,   251,   254,   257,   260,   266,   269,   275,
+     278,   284,   287,   293,   296,   302,   305,   308,   311,   318,
+     326,   330,   335,   338
 };
 #endif
 
@@ -1470,62 +1470,62 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 52 "codigo/cminus.y"
+#line 51 "codigo/cminus.y"
     { savedTree = (yyvsp[(1) - (1)].tree);
           traceReduce("program", "declaration_list"); ;}
     break;
 
   case 3:
-#line 58 "codigo/cminus.y"
+#line 57 "codigo/cminus.y"
     { (yyval.tree) = addSibling((yyvsp[(1) - (2)].tree), (yyvsp[(2) - (2)].tree));
           traceReduce("declaration_list", "declaration_list declaration"); ;}
     break;
 
   case 4:
-#line 61 "codigo/cminus.y"
+#line 60 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("declaration_list", "declaration"); ;}
     break;
 
   case 5:
-#line 67 "codigo/cminus.y"
+#line 66 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("declaration", "var_declaration"); ;}
     break;
 
   case 6:
-#line 70 "codigo/cminus.y"
+#line 69 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("declaration", "fun_declaration"); ;}
     break;
 
   case 7:
-#line 76 "codigo/cminus.y"
+#line 75 "codigo/cminus.y"
     { (yyval.tree) = newDeclNode(VarK, (yyvsp[(1) - (3)].name), (yyvsp[(2) - (3)].name));
           traceReduce("var_declaration", "type_specifier ID ;"); ;}
     break;
 
   case 8:
-#line 79 "codigo/cminus.y"
+#line 78 "codigo/cminus.y"
     { (yyval.tree) = newDeclNode(ArrayK, (yyvsp[(1) - (6)].name), (yyvsp[(2) - (6)].name));
           (yyval.tree)->val = (yyvsp[(4) - (6)].val);
           traceReduce("var_declaration", "type_specifier ID [ NUM ] ;"); ;}
     break;
 
   case 9:
-#line 86 "codigo/cminus.y"
+#line 85 "codigo/cminus.y"
     { (yyval.name) = "int";
           traceReduce("type_specifier", "int"); ;}
     break;
 
   case 10:
-#line 89 "codigo/cminus.y"
+#line 88 "codigo/cminus.y"
     { (yyval.name) = "void";
           traceReduce("type_specifier", "void"); ;}
     break;
 
   case 11:
-#line 95 "codigo/cminus.y"
+#line 94 "codigo/cminus.y"
     { (yyval.tree) = newDeclNode(FunK, (yyvsp[(1) - (6)].name), (yyvsp[(2) - (6)].name));
           (yyval.tree)->child[0] = (yyvsp[(4) - (6)].tree);
           (yyval.tree)->child[1] = (yyvsp[(6) - (6)].tree);
@@ -1533,43 +1533,43 @@ yyreduce:
     break;
 
   case 12:
-#line 103 "codigo/cminus.y"
+#line 102 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("params", "param_list"); ;}
     break;
 
   case 13:
-#line 106 "codigo/cminus.y"
+#line 105 "codigo/cminus.y"
     { (yyval.tree) = NULL;
           traceReduce("params", "void"); ;}
     break;
 
   case 14:
-#line 112 "codigo/cminus.y"
+#line 111 "codigo/cminus.y"
     { (yyval.tree) = addSibling((yyvsp[(1) - (3)].tree), (yyvsp[(3) - (3)].tree));
           traceReduce("param_list", "param_list , param"); ;}
     break;
 
   case 15:
-#line 115 "codigo/cminus.y"
+#line 114 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("param_list", "param"); ;}
     break;
 
   case 16:
-#line 121 "codigo/cminus.y"
+#line 120 "codigo/cminus.y"
     { (yyval.tree) = newDeclNode(ParamK, (yyvsp[(1) - (2)].name), (yyvsp[(2) - (2)].name));
           traceReduce("param", "type_specifier ID"); ;}
     break;
 
   case 17:
-#line 124 "codigo/cminus.y"
+#line 123 "codigo/cminus.y"
     { (yyval.tree) = newDeclNode(ArrayParamK, (yyvsp[(1) - (4)].name), (yyvsp[(2) - (4)].name));
           traceReduce("param", "type_specifier ID [ ]"); ;}
     break;
 
   case 18:
-#line 130 "codigo/cminus.y"
+#line 129 "codigo/cminus.y"
     { (yyval.tree) = newNode(CompoundK);
           (yyval.tree)->child[0] = (yyvsp[(2) - (4)].tree);
           (yyval.tree)->child[1] = (yyvsp[(3) - (4)].tree);
@@ -1577,73 +1577,73 @@ yyreduce:
     break;
 
   case 19:
-#line 138 "codigo/cminus.y"
+#line 137 "codigo/cminus.y"
     { (yyval.tree) = addSibling((yyvsp[(1) - (2)].tree), (yyvsp[(2) - (2)].tree));
           traceReduce("local_declarations", "local_declarations var_declaration"); ;}
     break;
 
   case 20:
-#line 141 "codigo/cminus.y"
+#line 140 "codigo/cminus.y"
     { (yyval.tree) = NULL;
           traceReduce("local_declarations", "vazio"); ;}
     break;
 
   case 21:
-#line 147 "codigo/cminus.y"
+#line 146 "codigo/cminus.y"
     { (yyval.tree) = addSibling((yyvsp[(1) - (2)].tree), (yyvsp[(2) - (2)].tree));
           traceReduce("statement_list", "statement_list statement"); ;}
     break;
 
   case 22:
-#line 150 "codigo/cminus.y"
+#line 149 "codigo/cminus.y"
     { (yyval.tree) = NULL;
           traceReduce("statement_list", "vazio"); ;}
     break;
 
   case 23:
-#line 156 "codigo/cminus.y"
+#line 155 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("statement", "expression_stmt"); ;}
     break;
 
   case 24:
-#line 159 "codigo/cminus.y"
+#line 158 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("statement", "compound_stmt"); ;}
     break;
 
   case 25:
-#line 162 "codigo/cminus.y"
+#line 161 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("statement", "selection_stmt"); ;}
     break;
 
   case 26:
-#line 165 "codigo/cminus.y"
+#line 164 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("statement", "iteration_stmt"); ;}
     break;
 
   case 27:
-#line 168 "codigo/cminus.y"
+#line 167 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("statement", "return_stmt"); ;}
     break;
 
   case 28:
-#line 174 "codigo/cminus.y"
+#line 173 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (2)].tree);
           traceReduce("expression_stmt", "expression ;"); ;}
     break;
 
   case 29:
-#line 177 "codigo/cminus.y"
+#line 176 "codigo/cminus.y"
     { (yyval.tree) = newNode(EmptyK);
           traceReduce("expression_stmt", ";"); ;}
     break;
 
   case 30:
-#line 183 "codigo/cminus.y"
+#line 182 "codigo/cminus.y"
     { (yyval.tree) = newNode(IfK);
           (yyval.tree)->child[0] = (yyvsp[(3) - (5)].tree);
           (yyval.tree)->child[1] = (yyvsp[(5) - (5)].tree);
@@ -1651,7 +1651,7 @@ yyreduce:
     break;
 
   case 31:
-#line 188 "codigo/cminus.y"
+#line 187 "codigo/cminus.y"
     { (yyval.tree) = newNode(IfK);
           (yyval.tree)->child[0] = (yyvsp[(3) - (7)].tree);
           (yyval.tree)->child[1] = (yyvsp[(5) - (7)].tree);
@@ -1660,7 +1660,7 @@ yyreduce:
     break;
 
   case 32:
-#line 197 "codigo/cminus.y"
+#line 196 "codigo/cminus.y"
     { (yyval.tree) = newNode(WhileK);
           (yyval.tree)->child[0] = (yyvsp[(3) - (5)].tree);
           (yyval.tree)->child[1] = (yyvsp[(5) - (5)].tree);
@@ -1668,20 +1668,20 @@ yyreduce:
     break;
 
   case 33:
-#line 205 "codigo/cminus.y"
+#line 204 "codigo/cminus.y"
     { (yyval.tree) = newNode(ReturnK);
           traceReduce("return_stmt", "return ;"); ;}
     break;
 
   case 34:
-#line 208 "codigo/cminus.y"
+#line 207 "codigo/cminus.y"
     { (yyval.tree) = newNode(ReturnK);
           (yyval.tree)->child[0] = (yyvsp[(2) - (3)].tree);
           traceReduce("return_stmt", "return expression ;"); ;}
     break;
 
   case 35:
-#line 215 "codigo/cminus.y"
+#line 214 "codigo/cminus.y"
     { (yyval.tree) = newNode(AssignK);
           (yyval.tree)->child[0] = (yyvsp[(1) - (3)].tree);
           (yyval.tree)->child[1] = (yyvsp[(3) - (3)].tree);
@@ -1689,20 +1689,20 @@ yyreduce:
     break;
 
   case 36:
-#line 220 "codigo/cminus.y"
+#line 219 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("expression", "simple_expression"); ;}
     break;
 
   case 37:
-#line 226 "codigo/cminus.y"
+#line 225 "codigo/cminus.y"
     { (yyval.tree) = newNode(IdK);
           (yyval.tree)->name = (yyvsp[(1) - (1)].name);
           traceReduce("var", "ID"); ;}
     break;
 
   case 38:
-#line 230 "codigo/cminus.y"
+#line 229 "codigo/cminus.y"
     { (yyval.tree) = newNode(IndexK);
           (yyval.tree)->name = (yyvsp[(1) - (4)].name);
           (yyval.tree)->child[0] = (yyvsp[(3) - (4)].tree);
@@ -1710,128 +1710,128 @@ yyreduce:
     break;
 
   case 39:
-#line 238 "codigo/cminus.y"
+#line 237 "codigo/cminus.y"
     { (yyval.tree) = newOpNode((yyvsp[(2) - (3)].name), (yyvsp[(1) - (3)].tree), (yyvsp[(3) - (3)].tree));
           traceReduce("simple_expression", "additive_expression relop additive_expression"); ;}
     break;
 
   case 40:
-#line 241 "codigo/cminus.y"
+#line 240 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("simple_expression", "additive_expression"); ;}
     break;
 
   case 41:
-#line 247 "codigo/cminus.y"
+#line 246 "codigo/cminus.y"
     { (yyval.name) = "<=";
           traceReduce("relop", "<="); ;}
     break;
 
   case 42:
-#line 250 "codigo/cminus.y"
+#line 249 "codigo/cminus.y"
     { (yyval.name) = "<";
           traceReduce("relop", "<"); ;}
     break;
 
   case 43:
-#line 253 "codigo/cminus.y"
+#line 252 "codigo/cminus.y"
     { (yyval.name) = ">";
           traceReduce("relop", ">"); ;}
     break;
 
   case 44:
-#line 256 "codigo/cminus.y"
+#line 255 "codigo/cminus.y"
     { (yyval.name) = ">=";
           traceReduce("relop", ">="); ;}
     break;
 
   case 45:
-#line 259 "codigo/cminus.y"
+#line 258 "codigo/cminus.y"
     { (yyval.name) = "==";
           traceReduce("relop", "=="); ;}
     break;
 
   case 46:
-#line 262 "codigo/cminus.y"
+#line 261 "codigo/cminus.y"
     { (yyval.name) = "!=";
           traceReduce("relop", "!="); ;}
     break;
 
   case 47:
-#line 268 "codigo/cminus.y"
+#line 267 "codigo/cminus.y"
     { (yyval.tree) = newOpNode((yyvsp[(2) - (3)].name), (yyvsp[(1) - (3)].tree), (yyvsp[(3) - (3)].tree));
           traceReduce("additive_expression", "additive_expression addop term"); ;}
     break;
 
   case 48:
-#line 271 "codigo/cminus.y"
+#line 270 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("additive_expression", "term"); ;}
     break;
 
   case 49:
-#line 277 "codigo/cminus.y"
+#line 276 "codigo/cminus.y"
     { (yyval.name) = "+";
           traceReduce("addop", "+"); ;}
     break;
 
   case 50:
-#line 280 "codigo/cminus.y"
+#line 279 "codigo/cminus.y"
     { (yyval.name) = "-";
           traceReduce("addop", "-"); ;}
     break;
 
   case 51:
-#line 286 "codigo/cminus.y"
+#line 285 "codigo/cminus.y"
     { (yyval.tree) = newOpNode((yyvsp[(2) - (3)].name), (yyvsp[(1) - (3)].tree), (yyvsp[(3) - (3)].tree));
           traceReduce("term", "term mulop factor"); ;}
     break;
 
   case 52:
-#line 289 "codigo/cminus.y"
+#line 288 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("term", "factor"); ;}
     break;
 
   case 53:
-#line 295 "codigo/cminus.y"
+#line 294 "codigo/cminus.y"
     { (yyval.name) = "*";
           traceReduce("mulop", "*"); ;}
     break;
 
   case 54:
-#line 298 "codigo/cminus.y"
+#line 297 "codigo/cminus.y"
     { (yyval.name) = "/";
           traceReduce("mulop", "/"); ;}
     break;
 
   case 55:
-#line 304 "codigo/cminus.y"
+#line 303 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(2) - (3)].tree);
           traceReduce("factor", "( expression )"); ;}
     break;
 
   case 56:
-#line 307 "codigo/cminus.y"
+#line 306 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("factor", "var"); ;}
     break;
 
   case 57:
-#line 310 "codigo/cminus.y"
+#line 309 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("factor", "call"); ;}
     break;
 
   case 58:
-#line 313 "codigo/cminus.y"
+#line 312 "codigo/cminus.y"
     { (yyval.tree) = newNode(ConstK);
           (yyval.tree)->val = (yyvsp[(1) - (1)].val);
           traceReduce("factor", "NUM"); ;}
     break;
 
   case 59:
-#line 320 "codigo/cminus.y"
+#line 319 "codigo/cminus.y"
     { (yyval.tree) = newNode(CallK);
           (yyval.tree)->name = (yyvsp[(1) - (4)].name);
           (yyval.tree)->child[0] = (yyvsp[(3) - (4)].tree);
@@ -1839,25 +1839,25 @@ yyreduce:
     break;
 
   case 60:
-#line 328 "codigo/cminus.y"
+#line 327 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("args", "arg_list"); ;}
     break;
 
   case 61:
-#line 331 "codigo/cminus.y"
+#line 330 "codigo/cminus.y"
     { (yyval.tree) = NULL;
           traceReduce("args", "vazio"); ;}
     break;
 
   case 62:
-#line 337 "codigo/cminus.y"
+#line 336 "codigo/cminus.y"
     { (yyval.tree) = addSibling((yyvsp[(1) - (3)].tree), (yyvsp[(3) - (3)].tree));
           traceReduce("arg_list", "arg_list , expression"); ;}
     break;
 
   case 63:
-#line 340 "codigo/cminus.y"
+#line 339 "codigo/cminus.y"
     { (yyval.tree) = (yyvsp[(1) - (1)].tree);
           traceReduce("arg_list", "expression"); ;}
     break;
@@ -2078,10 +2078,10 @@ yyreturn:
 }
 
 
-#line 344 "codigo/cminus.y"
+#line 343 "codigo/cminus.y"
 
 
-// o Bison so pede outro token depois de empilhar o anterior
+// quando o Bison pede um token, o anterior ja foi empilhado
 static int yylex(void)
 {
     TokenType token;
@@ -2094,7 +2094,7 @@ static int yylex(void)
     return token;
 }
 
-// sem o proximo token (yychar vazio), o token lido ja foi empilhado
+// yychar vazio: o token lido ja foi empilhado
 static void traceReduce(const char *lhs, const char *rhs)
 {
     if (TraceParse)

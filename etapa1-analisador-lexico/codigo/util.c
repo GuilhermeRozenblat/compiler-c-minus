@@ -27,7 +27,6 @@ void printToken(TokenType token, const char *tokenString)
     }
 }
 
-// mostra o arquivo inteiro e volta ao comeco dele, para o scanner
 void printSource(void)
 {
     int c, n = 1, lineStart = TRUE;

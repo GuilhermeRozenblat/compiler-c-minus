@@ -5,7 +5,7 @@
 
 #define LINHA "____________________________________________________________\n"
 
-// o mesmo limite de profundidade da pilha do Bison (YYMAXDEPTH)
+// mesmo limite do Bison (YYMAXDEPTH)
 #define MAXSTACK 10000
 
 void printToken(TokenType token, const char *tokenString)
@@ -31,7 +31,6 @@ void printToken(TokenType token, const char *tokenString)
     }
 }
 
-// mostra o arquivo inteiro e volta ao comeco dele, para o scanner
 void printSource(void)
 {
     int c, n = 1, lineStart = TRUE;
@@ -66,7 +65,6 @@ char *copyString(const char *s)
     return t;
 }
 
-// os nos nao sao liberados: o programa mostra a arvore e termina
 TreeNode *newNode(NodeKind kind)
 {
     TreeNode *t = allocate(sizeof(TreeNode));
@@ -94,7 +92,6 @@ TreeNode *newOpNode(const char *op, TreeNode *left, TreeNode *right)
     return t;
 }
 
-// poe t no fim da lista, que pode estar vazia
 TreeNode *addSibling(TreeNode *list, TreeNode *t)
 {
     TreeNode *last = list;
@@ -181,7 +178,7 @@ void printTree(TreeNode *tree)
     }
 }
 
-// o fim do arquivo e "$end" ate o Bison 3.5 e "end of file" do 3.6 em diante
+// o nome do fim de arquivo muda com a versao do Bison
 static int isEndfile(const char *s, size_t len)
 {
     return (len == 4 && strncmp(s, "$end", 4) == 0) ||
@@ -205,8 +202,7 @@ static void printTokenName(const char *s, size_t len)
         fprintf(listing, "\"%.*s\"", (int) len, s);
 }
 
-// traduz "syntax error, unexpected X, expecting A or B or C". O corte e feito
-// nos trechos fixos, porque a virgula tambem e um token.
+// traduz "syntax error, unexpected X, expecting A or B or C"
 void printSyntaxError(const char *message)
 {
     static const char UNEXPECTED[] = "syntax error, unexpected ";
@@ -241,7 +237,6 @@ void printSyntaxError(const char *message)
         return;
     }
 
-    // o erro aparece no token seguinte ao que falta, dai o "antes de"
     fprintf(listing, "esperado ");
     item = expected + sizeof EXPECTING - 1;
     for (;;) {
@@ -260,7 +255,7 @@ void printSyntaxError(const char *message)
     fprintf(listing, "\n");
 }
 
-// pilha de simbolos do --passos (a do Bison guarda estados)
+// pilha de simbolos do --passos
 static const char *symbolStack[MAXSTACK];
 static int top;
 static const char *pending;     // token recebido e ainda nao empilhado
