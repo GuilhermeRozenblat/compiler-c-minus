@@ -2,9 +2,9 @@
 
 Integrantes: Guilherme Rozenblat e Leonardo Valladares
 
-Relatório completo (Etapas 1 e 2): [Compilador C-Minus: analisadores léxico e sintático](trabalho-compiladores-analisadores-lexico-e-sintatico.pdf)
+Relatório completo Etapas 1 e 2: [Compilador C-Minus: analisadores léxico e sintático](trabalho-compiladores-analisadores-lexico-e-sintatico.pdf)
 
-Relatório da Etapa 1: [Analisador léxico C-Minus](Analisador%20Le%CC%81xico%20C-Minus.pdf)
+Relatório da Etapa 1 (Antigo): [Analisador léxico C-Minus](Analisador%20Le%CC%81xico%20C-Minus.pdf)
 
 Em cada pasta, `make` compila e `make passos` mostra as etapas da análise no console.
 
