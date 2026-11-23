@@ -1,71 +1,85 @@
 %{
-#include "scanner.h"
-#define YY_USER_ACTION lexema = yytext;
+#include "globals.h"
+#include "util.h"
+#include "scan.h"
+
+char tokenString[MAXTOKENLEN + 1];
+
+// guarda o lexema antes de cada acao (o input() do comentario apaga o yytext)
+#define YY_USER_ACTION strncpy(tokenString, yytext, MAXTOKENLEN);
 %}
 
 %option noyywrap nounput
 
-digito        [0-9]
-numero        {digito}+
-letra         [a-zA-Z]
-identificador {letra}+
+digit       [0-9]
+number      {digit}+
+letter      [a-zA-Z]
+identifier  {letter}+
+newline     \n
+whitespace  [ \t\r]+
 
 %%
 
-"/*"            { int c = 0, anterior;
-                  do {
-                      anterior = c;
-                      c = input();
-                      if (c == '\n')
-                          linha++;
-                      if (c == 0) {
-                          lexema = "/*";
-                          return ERRO;
-                      }
-                  } while (!(anterior == '*' && c == '/'));
-                }
 "else"          { return ELSE; }
 "if"            { return IF; }
 "int"           { return INT; }
 "return"        { return RETURN; }
 "void"          { return VOID; }
 "while"         { return WHILE; }
-"+"             { return MAIS; }
-"-"             { return MENOS; }
-"*"             { return VEZES; }
-"/"             { return DIVIDIDO; }
-"<"             { return MENOR; }
-"<="            { return MENOR_IGUAL; }
-">"             { return MAIOR; }
-">="            { return MAIOR_IGUAL; }
-"=="            { return IGUAL; }
-"!="            { return DIFERENTE; }
-"="             { return ATRIBUICAO; }
-";"             { return PONTO_VIRGULA; }
-","             { return VIRGULA; }
-"("             { return ABRE_PARENTESE; }
-")"             { return FECHA_PARENTESE; }
-"["             { return ABRE_COLCHETE; }
-"]"             { return FECHA_COLCHETE; }
-"{"             { return ABRE_CHAVE; }
-"}"             { return FECHA_CHAVE; }
-{numero}        { return NUM; }
-{identificador} { return ID; }
-\n              { linha++; }
-[ \t\r]+        { }
-.               { return ERRO; }
+"+"             { return PLUS; }
+"-"             { return MINUS; }
+"*"             { return TIMES; }
+"/"             { return OVER; }
+"<"             { return LT; }
+"<="            { return LE; }
+">"             { return GT; }
+">="            { return GE; }
+"=="            { return EQ; }
+"!="            { return NE; }
+"="             { return ASSIGN; }
+";"             { return SEMI; }
+","             { return COMMA; }
+"("             { return LPAREN; }
+")"             { return RPAREN; }
+"["             { return LBRACKET; }
+"]"             { return RBRACKET; }
+"{"             { return LBRACE; }
+"}"             { return RBRACE; }
+{number}        { return NUM; }
+{identifier}    { return ID; }
+{newline}       { lineno++; }
+{whitespace}    { }
+"/*"            { int c = 0, prev, startLine = lineno;
+                  do {
+                      prev = c;
+                      c = input();
+                      if (c == '\n')
+                          lineno++;
+                      if (c == 0 || c == EOF) {
+                          // comentario nao fechado: o erro fica na linha em que ele abriu
+                          lineno = startLine;
+                          return ERROR;
+                      }
+                  } while (!(prev == '*' && c == '/'));
+                }
+.               { return ERROR; }
 
 %%
 
-char *lexema;
-int linha = 1;
-
-void iniciar_scanner(FILE *arquivo)
+TokenType getToken(void)
 {
-    yyin = arquivo;
-}
+    static int firstTime = TRUE;
+    TokenType currentToken;
 
-TipoToken proximo_token(void)
-{
-    return yylex();
+    if (firstTime) {
+        firstTime = FALSE;
+        yyin = source;
+        yyout = listing;
+    }
+    currentToken = yylex();
+    if (TraceScan && currentToken != ENDFILE) {
+        fprintf(listing, "%d: ", lineno);
+        printToken(currentToken, tokenString);
+    }
+    return currentToken;
 }

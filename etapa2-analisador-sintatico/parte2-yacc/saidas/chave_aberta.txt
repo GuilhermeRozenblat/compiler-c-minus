@@ -1,0 +1,3 @@
+Erro sintatico no fim do arquivo: o codigo termina antes da hora
+
+Codigo invalido, erros: 1

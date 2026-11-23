@@ -1,0 +1,13 @@
+Escolher uma LP simplificada que tenha BNF
+Definir um subconjunto de regras de produção (mínimo 5) para:
+. Definir ERs para cada token do subconjunto selecionado
+. Executar o processo NFA-> DFA -> DFA mínimo sem usar ferramenta que automatize tudo
+. Implementar o Scanner
+. Gerar os códigos para o subconjunto selecionado (válidos e inválidos) e mostrar as saídas
+Usar gerador de analisador léxico (Scanner) Flex ou equivalente para gerar um Scanner (analisador) para todos os tokens da BNF completa
+Gerar arquivos com códigos sem erro e com erro
+Mostrar como fica a saída com o Scanner gerado
+
+. Processo de construção do DFA da LP escolhida reduzida (pode omitir o NFA) e decisões de projeto na implementação do analisador léxico feito manualmente
+. Analisador léxico construído com gerador de analisador léxico Flex / JFlex - discutir o processo de construção, com referências e dificuldades encontradas
+. Códigos da LP escolhida com erros e sem erros léxicos e as saídas para cada implementação

@@ -1,22 +1,35 @@
-# Etapa 1
-
-# Analisador Léxico C-Minus
+# Compilador C-Minus
 
 Integrantes: Guilherme Rozenblat e Leonardo Valladares
 
-Relatório: [Analisador Léxico C-Minus](Analisador%20Le%CC%81xico%20C-Minus.pdf).
+Relatório completo (Etapas 1 e 2): [Compilador C-Minus: analisadores léxico e sintático](trabalho-compiladores-analisadores-lexico-e-sintatico.pdf)
 
-Scanner manual para o subconjunto e scanner Flex para a linguagem completa.
-Gramática de referência em [`bnf.txt`](etapa1-analisador-lexico/bnf.txt). 
+Relatório da Etapa 1: [Analisador léxico C-Minus](Analisador%20Le%CC%81xico%20C-Minus.pdf)
 
-## Comandos rápidos
+Em cada pasta, `make` compila e `make passos` mostra as etapas da análise no console.
+
+## Etapa 1: analisador léxico
 
 ```sh
 cd etapa1-analisador-lexico
 make
-./scanner_manual testes/subconjunto/valido1.cm
-./scanner_flex testes/completo/gcd.cm
-make comparar
-make completo
-make limpar
+make passos
+```
+
+## Etapa 2: analisador sintático
+
+LL(1) de expressões:
+
+```sh
+cd etapa2-analisador-sintatico/parte1-ll1
+make
+make passos
+```
+
+C-Minus com Bison:
+
+```sh
+cd etapa2-analisador-sintatico/parte2-yacc
+make
+make passos
 ```

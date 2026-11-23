@@ -1,0 +1,9 @@
+/* o else pertence ao if mais proximo */
+
+void main(void)
+{ int x;
+  x = input();
+  if (x > 0)
+    if (x > 10) output(1);
+    else output(2);
+}

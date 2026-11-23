@@ -1,0 +1,131 @@
+Codigo valido
+
+Arvore sintatica:
+Vetor: x[10] (int)
+Funcao: minloc (int)
+  Parametro vetor: a[] (int)
+  Parametro: low (int)
+  Parametro: high (int)
+  Bloco
+    Variavel: i (int)
+    Variavel: x (int)
+    Variavel: k (int)
+    Atribuicao
+      Id: k
+      Id: low
+    Atribuicao
+      Id: x
+      Indice: a
+        Id: low
+    Atribuicao
+      Id: i
+      Op: +
+        Id: low
+        Num: 1
+    Enquanto
+      Op: <
+        Id: i
+        Id: high
+      Bloco
+        Se
+          Op: <
+            Indice: a
+              Id: i
+            Id: x
+          Bloco
+            Atribuicao
+              Id: x
+              Indice: a
+                Id: i
+            Atribuicao
+              Id: k
+              Id: i
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1
+    Retorno
+      Id: k
+Funcao: sort (void)
+  Parametro vetor: a[] (int)
+  Parametro: low (int)
+  Parametro: high (int)
+  Bloco
+    Variavel: i (int)
+    Variavel: k (int)
+    Atribuicao
+      Id: i
+      Id: low
+    Enquanto
+      Op: <
+        Id: i
+        Op: -
+          Id: high
+          Num: 1
+      Bloco
+        Variavel: t (int)
+        Atribuicao
+          Id: k
+          Chamada: minloc
+            Id: a
+            Id: i
+            Id: high
+        Atribuicao
+          Id: t
+          Indice: a
+            Id: k
+        Atribuicao
+          Indice: a
+            Id: k
+          Indice: a
+            Id: i
+        Atribuicao
+          Indice: a
+            Id: i
+          Id: t
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1
+Funcao: main (void)
+  Bloco
+    Variavel: i (int)
+    Atribuicao
+      Id: i
+      Num: 0
+    Enquanto
+      Op: <
+        Id: i
+        Num: 10
+      Bloco
+        Atribuicao
+          Indice: x
+            Id: i
+          Chamada: input
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1
+    Chamada: sort
+      Id: x
+      Num: 0
+      Num: 10
+    Atribuicao
+      Id: i
+      Num: 0
+    Enquanto
+      Op: <
+        Id: i
+        Num: 10
+      Bloco
+        Chamada: output
+          Indice: x
+            Id: i
+        Atribuicao
+          Id: i
+          Op: +
+            Id: i
+            Num: 1

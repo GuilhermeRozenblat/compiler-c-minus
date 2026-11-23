@@ -1,0 +1,21 @@
+Codigo valido
+
+Arvore sintatica:
+Funcao: main (void)
+  Bloco
+    Variavel: x (int)
+    Atribuicao
+      Id: x
+      Chamada: input
+    Se
+      Op: >
+        Id: x
+        Num: 0
+      Se
+        Op: >
+          Id: x
+          Num: 10
+        Chamada: output
+          Num: 1
+        Chamada: output
+          Num: 2

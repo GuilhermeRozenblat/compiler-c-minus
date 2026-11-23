@@ -1,0 +1,3 @@
+Erro lexico na linha 3: caractere invalido "#"
+
+Codigo invalido, erros: 1

@@ -1,0 +1,18 @@
+/* comando vazio, return sem valor e expressao entre parenteses */
+
+int v[10];
+
+void dobra(int a[], int n)
+{ int i;
+  i = 0;
+  while (i < n)
+  { a[i] = (i + 1) * 2;
+    i = i + 1;
+  }
+  ;
+  return;
+}
+
+void main(void)
+{ dobra(v, 10);
+}
