@@ -1,0 +1,18 @@
+Expressao: 3 + 4 # 5
+
+************************************************************
+Etapa 1: analise lexica
+************************************************************
+
+Tokens:
+  3          NUM       coluna 1
+  +          MAIS      coluna 3
+  4          NUM       coluna 5
+
+Erro lexico na coluna 7: caractere invalido "#"
+
+************************************************************
+Resultado
+************************************************************
+
+Resultado: expressao rejeitada, erro lexico
